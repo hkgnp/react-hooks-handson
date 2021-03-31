@@ -1,10 +1,15 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { useHistory } from 'react-router-dom';
+import ProductContext from '../ProductContext';
 
 export default function ContactUs(props) {
+  const context = useContext(ProductContext);
+  console.log(context);
   // replicate state using React hooks
   // first argument is the default value of the state variable
   const [formData, setFormData] = useState({
+    firstName: '',
+    lastName: '',
     email: '',
     comments: '',
   });
@@ -32,6 +37,26 @@ export default function ContactUs(props) {
   return (
     <React.Fragment>
       <h1>Contact Us</h1>
+      <div>
+        <label className="form-label">First Name</label>
+        <input
+          type="text"
+          name="firstName"
+          value={formData.firstName}
+          className="form-control"
+          onChange={updateFormField}
+        />
+      </div>
+      <div>
+        <label className="form-label">Last Name</label>
+        <input
+          type="text"
+          name="lastName"
+          value={formData.lastName}
+          className="form-control"
+          onChange={updateFormField}
+        />
+      </div>
       <div>
         <label className="form-label">Email</label>
         <input
